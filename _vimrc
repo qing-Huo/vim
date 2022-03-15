@@ -4,10 +4,8 @@
 
 "set pythonthreedll=python310.dll
 "set pythonthreehome=C:/Users/qingHuo/AppData/Local/Programs/Python/Python310/
-
-"补全大括号
-inoremap { {}<Esc>i<CR><Esc>koi<Esc>j<C-S-v><S-%>=j<S-$>xa
-
+"关闭系统提示音
+set vb t_vb=
 "调整默认字体大小
 set guifont=Consolas:h15
 set encoding=utf-8                  "Encoding UTF-8, to use Gvim correct
@@ -15,6 +13,15 @@ set encoding=utf-8                  "Encoding UTF-8, to use Gvim correct
 "let &pythonhome=''                 "Python 2&3 only choose 1
 let &pythonthreedll='C:\Users\qingHuo\AppData\Local\Programs\Python\Python310\Python310.dll'
 let &pythonthreehome='C:\Users\qingHuo\AppData\Local\Programs\Python\Python310\'
+
+"js语法插件
+"let g: used_javascript_libs  =  'underscore,backbone'
+"autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
+"autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1
+"autocmd BufReadPre *.js let b:javascript_lib_use_backbone = 1
+"autocmd BufReadPre *.js let b:javascript_lib_use_prelude = 0
+"autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 0
+
 syntax on                           "hilight_base
 let mapleader = "\<space>"          "change leader key
 language C                          "Using English
@@ -27,52 +34,52 @@ let &t_ut=''
 "打开文件监视 如果外部发生改变,就提示
 set autoread
 set expandtab                       "Convent Tab to space
-set tabstop=4           "Tab config
+set tabstop=4                       "Tab config
 set shiftwidth=4
 set softtabstop=4
-"set list             "Show '$' at cursor
-"set listchars=tab:▸\ ,trail:   "Show Tab & space
-set scrolloff=5           "At least n row before/after cursor
-set backspace=indent,eol,start    "Let Backspace cross row
-set foldmethod=indent       "fold
+"set list                           "Show '$' at cursor
+"set listchars=tab:▸\ ,trail:       "Show Tab & space
+set scrolloff=5                     "At least n row before/after cursor
+set backspace=indent,eol,start      "Let Backspace cross row
+set foldmethod=indent               "fold
 set foldlevel=99
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"  "Theme of cursor
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"    "Theme of cursor
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-set laststatus=2          "Always show Status bar
-"au BufReadPost * if line("''\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif.         "Save postion of cursor
-set autoindent            "ident
+set laststatus=2                    "Always show Status bar
+"au BufReadPost * if line("''\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif.                 "Save postion of cursor
+set autoindent                      "ident
 
 "====================================
 "===  editor  =======================
 "====================================
-"set guifont=Powerline_Consolas:h12:cANSI:qDRAFT        "NeoVim not support
-":call libcallnr("vimtweak64.dll", "SetAlpha", 250)
+"set guifont=Powerline_Consolas:h12:cANSI:qDRAFT                "NeoVim not support
+"":call libcallnr("vimtweak64.dll", "SetAlpha", 250)
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
-    \set guioptions-=T <Bar>
-    \set guioptions-=m <bar>
-  \else <Bar>
-    \set guioptions =T <Bar>
-    \set guioptions =m <Bar>
-  \endif<CR>
+        \set guioptions-=T <Bar>
+        \set guioptions-=m <bar>
+    \else <Bar>
+        \set guioptions =T <Bar>
+        \set guioptions =m <Bar>
+    \endif<CR>
 set guioptions-=m   "Hide Menu
 set guioptions-=T   "Hide Tool-Bar
 set guioptions-=r   "hide right scroll
 set guioptions-=b   "hide buttom scoll
 set guioptions-=L   "hide left scroll
 
-"set number     "row number
-"set relativenumber"relative row number
-set cursorline    "hilight line cursor
-set cursorcolumn  "hilight colum cursor
-set wrap      "autowrap
-set showcmd     "show point out
+set number          "row number
+set relativenumber"relative row number
+set cursorline      "hilight line cursor
+set cursorcolumn    "hilight colum cursor
+set wrap            "autowrap
+set showcmd         "show point out
 set wildmenu
-set hlsearch    "search hilight
-exec "nohlsearch" 
-set incsearch   "real time search hilight
-set ignorecase    "ignore text-transform
-set smartcase   "smart text-transform
+set hlsearch        "search hilight
+exec "nohlsearch"   
+set incsearch       "real time search hilight
+set ignorecase      "ignore text-transform
+set smartcase       "smart text-transform
 
 vnoremap <Leader>y "+y
 nmap <Leader>p "+p
@@ -181,16 +188,16 @@ map ff :NERDTreeToggle<CR>
 
 "------- Airline -----------
 "set ambiwidth=double                    " 设置为双字宽显示，否则无法完整显示如:☆
-let g:airline_theme='bubblegum'
-let g:airline_powerline_fonts = 1
-" 开启tabline
-let g:airline#extensions#tabline#enabled = 1      "tabline中当前buffer两端的分隔字符
-let g:airline#extensions#tabline#left_sep = ' '   "tabline中未激活buffer两端的分隔字符
-let g:airline#extensions#tabline#left_alt_sep = '|'      "tabline中buffer显示编号
-let g:airline#extensions#tabline#buffer_nr_show = 1      
-" 映射切换buffer的键位
-nnoremap [b :bp<CR>
-nnoremap ]b :bn<CR>
+"let g:airline_theme='bubblegum'
+"let g:airline_powerline_fonts = 1
+"" 开启tabline
+"let g:airline#extensions#tabline#enabled = 1      "tabline中当前buffer两端的分隔字符
+"let g:airline#extensions#tabline#left_sep = ' '   "tabline中未激活buffer两端的分隔字符
+"let g:airline#extensions#tabline#left_alt_sep = '|'      "tabline中buffer显示编号
+"let g:airline#extensions#tabline#buffer_nr_show = 1      
+"" 映射切换buffer的键位
+"nnoremap [b :bp<CR>
+"nnoremap ]b :bn<CR>
 
 "------- vim-autodormat ----
 "python need
@@ -206,32 +213,32 @@ map <A-m> <leader>cu
 unmap <CR>
 
 " 1. vscode defult 2. author defult 3. vscode show
-" \ 'guifgs': ['#B21212', '#1B9CED','#FFFC00'],
-" \ 'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-" \ 'guifgs': ['#C186BF', '#268EDB','#F79318'],
+"   \   'guifgs': ['#B21212', '#1B9CED','#FFFC00'],
+"   \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+"   \   'guifgs': ['#C186BF', '#268EDB','#F79318'],
 "------- Rainbow -----------
-  let g:rainbow_conf = {
-  \ 'guifgs': ['#C186BF', '#268EDB','#F79318'],
-  \ 'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-  \ 'operators': '_,_',
-  \ 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-  \ 'separately': {
-  \   '*': {},
-  \   'tex': {
-  \     'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-  \   },
-  \   'lisp': {
-  \     'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-  \   },
-  \   'vim': {
-  \     'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-  \   },
-  \   'html': {
-  \     'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-  \   },
-  \   'css': 0,
-  \ }
-  \}
+    let g:rainbow_conf = {
+    \   'guifgs': ['#C186BF', '#268EDB','#F79318'],
+    \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+    \   'operators': '_,_',
+    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+    \   'separately': {
+    \       '*': {},
+    \       'tex': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+    \       },
+    \       'lisp': {
+    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+    \       },
+    \       'vim': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+    \       },
+    \       'html': {
+    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+    \       },
+    \       'css': 0,
+    \   }
+    \}
 let g:rainbow_active = 1
 "------- ALE ---------------
 "if need change airline icon:
@@ -239,31 +246,31 @@ let g:rainbow_active = 1
 "   let error_symbol = get(g:, 'airline#extensions#ale#error_symbol', '')
 "   let warning_symbol = get(g:, 'airline#extensions#ale#warning_symbol', ':')
 "始终开启标志列
-let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 0
-"自定义error和warning图标
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-"在vim自带的状态栏中整合ale
-let g:ale_statusline_format = ['✗ %d', ' %d', ' OK']
-"显示Linter名称,出错或警告等相关信息
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"let g:ale_sign_column_always = 1
+"let g:ale_set_highlights = 0
+""自定义error和warning图标
+"let g:ale_sign_error = ''
+"let g:ale_sign_warning = ''
+""在vim自带的状态栏中整合ale
+"let g:ale_statusline_format = ['✗ %d', ' %d', ' OK']
+""显示Linter名称,出错或警告等相关信息
+"let g:ale_echo_msg_error_str = 'E'
+"let g:ale_echo_msg_warning_str = 'W'
+"let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
-"<Leader>s触发/关闭语法检查
-nmap <Leader>s :ALEToggle<CR>
-"<Leader>d查看错误或警告的详细信息
-nmap <Leader>d :ALEDetail<CR>
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
-"cpp NOT C++
-let g:ale_linters = {
-\   'cpp': ['clang'],
-\   'c': ['clang'],
-\   'python': ['pylint'],
-\}
+"nmap sp <Plug>(ale_previous_wrap)
+"nmap sn <Plug>(ale_next_wrap)
+""<Leader>s触发/关闭语法检查
+"nmap <Leader>s :ALEToggle<CR>
+""<Leader>d查看错误或警告的详细信息
+"nmap <Leader>d :ALEDetail<CR>
+""set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
+""cpp NOT C++
+"let g:ale_linters = {
+"\   'cpp': ['clang'],
+"\   'c': ['clang'],
+"\   'python': ['pylint'],
+"\}
 
 "------- MarkDown ----------
 "first use :MarkdownPreviewToggel  to wake Plug
@@ -334,9 +341,9 @@ nnoremap <c-j> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_min_num_of_chars_for_completion=2                 " 从第2个键入字符就开始罗列匹配项
 let g:ycm_key_invoke_completion = '<c-z>'
 let g:ycm_semantic_triggers =  {
-      \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-      \ 'cs,lua,javascript': ['re!\w{2}'],
-      \ }
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ }
 
 "------- Python-mode -------
 "开启警告
@@ -413,12 +420,12 @@ let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 "------- vim-cpp-hilight ---
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_simple_template_highlight = 1
-let g:cpp_experimental_template_highlight = 1
-let g:cpp_concepts_highlight = 1
+"let g:cpp_class_scope_highlight = 1
+"let g:cpp_member_variable_highlight = 1
+"let g:cpp_class_decl_highlight = 1
+"let g:cpp_experimental_simple_template_highlight = 1
+"let g:cpp_experimental_template_highlight = 1
+"let g:cpp_concepts_highlight = 1
 
 "------- Start -------------
 "let g:startify_custom_header = [
@@ -449,14 +456,19 @@ map <F4> :TlistToggle<cr>
 "=== VIM-Plug ======================
 "===================================
 call plug#begin('~/.vim/plugged')
+"下面两个为js插件
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'itchyny/lightline.vim'
+"Plug 'jelera/vim-javascript-syntax'
 Plug 'lyokha/vim-xkbswitch'                 "neovim notsupport
 Plug 'DeXP/xkb-switch-win'                  "neoivm norsupport
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
 Plug 'preservim/nerdtree'
 Plug 'mbbill/undotree'
-Plug 'dense-analysis/ale'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'dense-analysis/ale'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
 Plug 'Chiel92/vim-autoformat'
 Plug 'preservim/nerdcommenter'
@@ -464,18 +476,18 @@ Plug 'preservim/nerdcommenter'
 Plug 'luochen1990/rainbow'
 Plug 'godlygeek/tabular'
 Plug 'mzlogin/vim-markdown-toc'
-Plug 'plasticboy/vim-markdown'
+"Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'ferrine/md-img-paste.vim' 
 Plug 'lervag/vimtex'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'mhinz/vim-startify'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'vim-scripts/taglist.vim'
 Plug 'ycm-core/YouCompleteMe'
-Plug 'vim-scripts/VimTweak'
-Plug 'mattn/transparency-windows-vim'
+"Plug 'vim-scripts/VimTweak'
+"Plug 'mattn/transparency-windows-vim'
 call plug#end()
 
 "===================================
